@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>HackPrix</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.4/css/all.min.css" integrity="sha512-McPjr7hXfG5dZvM2LjaotmHI0Zd6GyjGvp1D6pl5AZ7sJStwKqRYF5tB0lJUUtZp+81i1ZPlAXr5cFlg+eCxgw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/responsive0.1.css">
+  <link rel="stylesheet" href="css/responsive0.2.css">
+  <link rel="stylesheet" href="css/responsive2.css">
+  <link rel="stylesheet" href="css/responsive2.1.css">
+  <link rel="stylesheet" href="css/responsive2.2.css">
+  <!--<link rel="stylesheet" href="css/responsive2.3.css">-->
+  <link rel="stylesheet" href="css/responsive3.css">
+  <link rel="stylesheet" href="css/responsive4.css">
+  <link rel="stylesheet" href="css/all.css">
+
+      <!-- Favicon links -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/quantum.js"></script>
+  <style>
+    #loader-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #474545; /* Dark background color */
+        z-index: 9999; 
+    }
+    l-quantum {
+        --l-quantum-color: #ffffff; 
+    }
+    
+    body.loading > * {
+        display: none;
+    }
+</style>
+<style>
+.dropdown-content-c {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    max-width: 70%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+    color: #333; /* Adjust text color as needed */
+    padding: 10px; /* Padding around the dropdown content */
+    border-radius: 5px;
+    overflow-y: auto; /* Enable scrolling if content exceeds dropdown height */
+}
+
+.dropdown-content-c a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333; /* Adjust link color */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+
+
+  .dropdown-content-c input {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+  }
+
+  .dropdown-content-c input:hover {
+    background-color: #f1f1f1;
+  }
+  @keyframes dropDown {
+  0% {
+      background-position: 0% 0%;
+  }
+  50% {
+      background-position: 0% 100%;
+  }
+  100% {
+      background-position: 0% 0%;
+  }
+}
+  .namebtn {
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 5px;
+    background-color: #c81543;
+    background-image: linear-gradient(180deg, rgba(0,0,0,1) 25%, rgba(200,21,67,1) 95%, rgba(200,21,67,1) 100%);
+    color: #ffffff;
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 5px;
+    animation: dropDown 5s infinite;
+  }
+
+  .button1 {
+    display: inline-block;
+    padding: 5px 5px;
+    background-color: #c81543;
+    background-image: linear-gradient(180deg, rgba(0,0,0,1) 25%, rgba(200,21,67,1) 95%, rgba(200,21,67,1) 100%);
+    color: #ffffff;
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 5px;
+    animation: dropDown 5s infinite;
+  }
+
+
+/* Modal styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 9999; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scrolling if needed */
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.social-icons {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.social-icons a {
+  color: #333; /* Adjust color as needed */
+  text-decoration: none;
+  margin-right: 10px; /* Adjust spacing between icons */
+}
+
+
+</style>
+
+</head>
+<body>
+  <div id="loader-container">
+    <l-quantum size="45" speed="1.75" color="black"></l-quantum>
+  </div>
+  <div class="video-background">
+    <video id="bg-video" loop muted playsinline webkit-playsinline preload="auto">
+        <source src="images/flag.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var video = document.getElementById('bg-video');
+        video.muted = true;
+        video.play().catch(function(error) {
+            console.log('Autoplay was prevented:', error);
+        });
+    });
+</script>
+
+  <!-- Navigation container -->
+  <div class="nav-container" id="navContainer">
+    <!-- Navigation bar -->
+    <nav>
+  <div class="logo-container"> <!-- New logo container -->
+    <div class="logo">
+        <a href="https://codewavehub.tech">
+            <img src="images/CWH white.png" alt="Hackathon Logo">
+        </a>
+    </div>
+  </div>
+      <div class="buttons-container">
+        <div class="sponsor-btn">
+          <button onclick="downloadPDF()">Sponsor Us</button>
+        </div>    
+        <div class="dropdown">
+          <button class="dropbtn" id="menuButton">Menu</button>
+          <div class="dropdown-content" id="dropdownContent">
+            <a href="#about">About</a>
+            <a href="#prize-pool">Prize Pool</a>
+            <a href="#tracks">Tracks</a>
+            <a href="#schedule">Schedule</a>
+            <a href="#sponsors">Sponsors</a>
+            <a href="team.html">Our Team</a>
+            <a href="#faqs">FAQs</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>        
+      </div>      
+    </nav>
+  </div>
+</body>
+</html>
+
+  <div class="main-container">
+    <div class="hackathon-info">
+        <img src="images/1 HP Final logo white.PNG" alt="Hackathon Logo">
+        <div id="animation-container">
+          <h2 id="animated-text">Where Innovation Meets Collaboration<span class="dot">.</span><span class="dot">.</span></h2>
+        </div>        
+        <p><strong><a href="https://tinyurl.com/lordslocation"><img src="images/animat-map-color.gif" alt="Map Icon" class="map-icon"></a> <p1>8 & 9 June 2024 | LIET, Hyderabad</p1></strong></p>
+        <!-- <div class="buttons">
+          <a href="https://hackprix.devfolio.co/" class="devfolio-button">
+              <img src="images/applywithdevfolio2.PNG" alt="Apply with DEVFOLIO" class="devfolio-image">
+          </a>          
+          <a href="https://discord.com/invite/EbfEhyaNWK" class="discord-button">
+              <img src="images/joindis.PNG" alt="Discord">
+          </a>
+      </div>       -->
+    </div>
+  </div>
+    <!-- Countdown Timer -->
+    <section id="count" class="container">
+      <div class="countdown-container container">
+        <div class="heading-container">
+          <h1 class="front-text" style="font-family: 'NTBrickSans', sans-serif;">Download Participation Certificate</h1>
+        </div>
+        <img src="./images/certlogo.png" alt="Certificate Logo" height="200px" width="200px" class="certificate-logo">
+        <div style="display:flex; gap:10px;">
+          <div class="dropdown">
+            <button class="namebtn">Find your Name</button>
+            <div id="myDropdown" class="dropdown-content-c">
+              <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+              <!-- Options will be dynamically added here -->
+            </div>
+          </div>
+          <div id="myModal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <p>✅ Download has begun..</p>
+              <img src="images/modal.gif" alt="Downloading GIF" class="download-icon" style="width: 100px; height: 100px;">
+              <p style="font-size: 15px;">Don't forget to share it on socials and tag @codewavehub!</p><br>
+              <p style="font-size: 10px;">Click Below to Check out our socials!</p>
+              <div class="social-icons">
+                <a href="https://instagram.com/codewavehub" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/codewavehub" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com/company/codewavehub" target="_blank"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+          
+               
+          <a id="button1" class="button1" style="user-select: none;" onclick="handleDownloadClick()">Download</a>
+          
+        </div>
+      </div>
+    </section>
+    <script>
+      document.querySelector('.namebtn').addEventListener('click', function(event) {
+          event.stopPropagation();
+          var dropdownContent = this.nextElementSibling;
+          dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+      });
+  
+      document.querySelectorAll('.dropdown-content-c a').forEach(function(link) {
+          link.addEventListener('click', function(event) {
+              var dropdownContent = this.parentElement;
+              dropdownContent.style.display = "none";
+              event.preventDefault(); // Prevent default anchor behavior
+              event.stopPropagation();
+          });
+      });
+  
+      document.querySelectorAll('.dropdown-content-c input').forEach(function(input) {
+          input.addEventListener('click', function(event) {
+              event.stopPropagation(); // Prevent closing dropdown when clicking inside input
+          });
+      });
+  
+      window.addEventListener('click', function(event) {
+          if (!event.target.matches('.namebtn')) {
+              document.querySelectorAll('.dropdown-content-c').forEach(function(dropdown) {
+                  dropdown.style.display = "none";
+              });
+          }
+      });
+  
+      function filterFunction() {
+          var input, filter, div, a, i;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          div = document.getElementById("myDropdown");
+          a = div.getElementsByTagName("a");
+          for (i = 0; i < a.length; i++) {
+              txtValue = a[i].textContent || a[i].innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  a[i].style.display = "";
+              } else {
+                  a[i].style.display = "none";
+              }
+          }
+      }
+  </script>
+  
+
+      <!-- <div class="clock row">
+        <div class="clock-item clock-days countdown-time-value col-sm-6 col-md-3">
+          <div class="wrap">
+            <div class="inner">
+              <div id="canvas_days" class="clock-canvas"></div>
+              <div class="text">
+                <p class="val">0</p>
+                <p class="type-days type-time">DAYS</p>
+              </div>
+          </div>
+        </div>
+        </div>
+        <div class="clock-item clock-hours countdown-time-value col-sm-6 col-md-3">
+          <div class="wrap">
+            <div class="inner">
+              <div id="canvas_hours" class="clock-canvas"></div>
+              <div class="text">
+                <p class="val">0</p>
+                <p class="type-hours type-time">HOURS</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clock-item clock-minutes countdown-time-value col-sm-6 col-md-3">
+          <div class="wrap">
+            <div class="inner">
+              <div id="canvas_minutes" class="clock-canvas"></div>
+              <div class="text">
+                <p class="val">0</p>
+                <p class="type-minutes type-time">MINUTES</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clock-item clock-seconds countdown-time-value col-sm-6 col-md-3">
+          <div class="wrap">
+            <div class="inner">
+              <div id="canvas_seconds" class="clock-canvas"></div>
+              <div class="text">
+                <p class="val">0</p>
+                <p class="type-seconds type-time">SECONDS</p>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    </section>
+  
+    <!-- About Us section -->
+    <section id="about" class="container">
+      <div class="heading-container">
+          <h1 class="front-text" style="font-family: 'NTBrickSans', sans-serif;">About Us</h1>
+      </div>
+      <div class="content">
+          <p style="text-align: left;">
+              <span style="font-weight: bold; color: #ffffff;">Hackprix</span> is being organized on June 8 & 9 2024, in the vibrant city of Hyderabad, India. It’s a manifestation of <span style="font-weight: bold; color: #ffffff;">Lords Institute’s</span> commitment to empowering individuals and fostering a culture of innovation. By creating this platform, we aim to unlock the vast potential that resides within the tech enthusiasts.
+          </p>
+          <div class="slider-container">
+              <div class="slider">
+                  <div class="slider-items left-to-right">
+                      <img src="images/slider (1).jpeg" alt="Nike">
+                      <img src="images/slider (2).jpeg" alt="Apple">
+                      <img src="images/slider (3).jpeg" alt="Disney">
+                      <img src="images/slider (4).jpeg" alt="Loon">
+
+                      <img src="images/slider (1).jpeg" alt="Nike">
+                      <img src="images/slider (2).jpeg" alt="Apple">
+                      <img src="images/slider (3).jpeg" alt="Disney">
+                      <img src="images/slider (4).jpeg" alt="Loon">
+                  </div>
+              </div>
+              <div class="slider">
+                  <div class="slider-items right-to-left">
+                      <img src="images/slider (5).jpeg" alt="Nike">
+                      <img src="images/slider (1).jpeg" alt="Apple">
+                      <img src="images/slider (2).jpeg" alt="Disney">
+                      <img src="images/slider (3).jpeg" alt="Loon">
+
+                      <img src="images/slider (5).jpeg" alt="Nike">
+                      <img src="images/slider (1).jpeg" alt="Apple">
+                      <img src="images/slider (2).jpeg" alt="Disney">
+                      <img src="images/slider (3).jpeg" alt="Loon">
+                  </div>
+              </div>
+          </div>
+          <p style="text-align: left;">
+              At the end of this Hackathon, participants will have a chance to pitch their project and launch their ideas to an audience of peers and sponsor representatives. This opportunity not only provides valuable exposure but also opens doors to potential collaborations and future opportunities for growth and development in the tech industry.
+          </p>
+      </div>
+  </section>
+
+    <!-- Prize Pool Container -->
+<!-- Prize Pool section -->
+<section id="prize-pool" class="container">
+  <div class="heading-container">
+    <h1 class="front-text">Prize Pool</h1>
+  </div>
+  <div class="prize-pool-container">
+    <div class="prize">
+      <img src="images/first.PNG" alt="1st Prize">
+    </div>
+    <div class="prize">
+      <img src="images/second.PNG" alt="2nd Prize">
+    </div>
+    <div class="prize">
+      <img src="images/third.PNG" alt="3rd Prize">
+    </div>
+  </div>
+</section>
+
+  
+    <section id="tracks" class="container">
+      <div class="heading-container">
+        <h1 class="front-text">Tracks</h1>
+      </div>
+      <div class="scroll-instruction">Swipe to explore tracks!</div>
+      <div class="tracks-container">
+        <div class="track">
+          <img src="images/tracks (2).gif" alt="Generative AI & Machine Learning">
+          <p>Generative AI & Machine Learning</p>
+        </div>
+        <div class="track">
+          <img src="images/tracks (3).gif" alt="Blockchain & Web3">
+          <p>Blockchain & Web3</p>
+        </div>
+        <div class="track">
+          <img src="images/tracks (4).gif" alt="IoT & Embedded Systems">
+          <p>IoT & Embedded Systems</p>
+        </div>
+        <div class="track">
+          <img src="images/tracks (1).gif" alt="Open Track: Innovate for Good">
+          <p>Open Track: Innovate for Good</p>
+        </div>
+      </div>
+      <div class="scroll-arrow scroll-arrow-left">&#9664;</div>
+      <div class="scroll-arrow scroll-arrow-right">&#9654;</div>
+    </section>
+
+        <section id="schedule" class="container">
+      <div class="heading-container">
+        <h1 class="front-text">Schedule</h1>
+      </div>
+      <div class="scroll-instruction">Swipe to view schedule!</div>
+      <div class="schedule-container">
+        <div class="schedule">
+          <img src="images/schedule1.png" alt="Day 1 Schedule">
+          <p>Day 1 Schedule</p>
+        </div>
+        <div class="schedule">
+          <img src="images/schedule2.png" alt="Day 2 Schedule">
+          <p>Day 2 Schedule</p>
+        </div>
+      </div>
+      <div class="scroll-arrow scroll-arrow-left">&#9664;</div>
+      <div class="scroll-arrow scroll-arrow-right">&#9654;</div>
+    </section>
+
+
+  <section id="sponsors" class="container">
+    <div class="heading-container">
+      <h1 class="front-text">Sponsors</h1>
+    </div>
+    <div class="sponsor-type venue-partner">
+      <h2>Title-Partner</h2>
+      <div class="partner">
+        <img class="venue-partner-logo" src="images/LORDS.PNG" alt="Venue Partner Logo">
+        <img class="venue-partner-info" src="images/lordsinfo.PNG" alt="Venue Partner Info"> 
+      </div>
+    </div>       
+    <div class="sponsor-type gold-partner">
+      <h2>Gold-Partner</h2>
+      <div class="partner">
+        <a href="https://education.github.com/benefits?utm_source=2024-06-08-HackPrix">
+          <img class="gold-partner-logo1" src="images/Github logo white 2.PNG" alt="Gold Partner Logo 1">
+        </a>
+      </div>
+      <div class="partner">
+        <a href="https://www.bing.com/ck/a?!&&p=fa4738bc680bdee6JmltdHM9MTcxNzU0NTYwMCZpZ3VpZD0wMTA1NWM1My03YzlkLTY4NDYtMjQzZC00Zjg5N2QzMDY5MzMmaW5zaWQ9NTIxNw&ptn=3&ver=2&hsh=3&fclid=01055c53-7c9d-6846-243d-4f897d306933&psq=hackquest&u=a1aHR0cHM6Ly93d3cuaGFja3F1ZXN0LmlvLw&ntb=1">
+          <img class="gold-partner-logo2" src="images/hqblack.png" alt="Gold Partner Logo 2">
+        </a>
+      </div>
+    </div>
+    <div class="sponsor-type silver-partner">
+      <h2>Silver-Partner</h2>
+      <div class="partner">
+        <a href="https://ethindia.co/">
+        <img class="silver-partner-logo" src="images/eth.png" alt="ETHINDIA LOGO">
+        </a>
+        <div class="partner-info">
+        </div>
+      </div>
+      <div class="partner">
+        <a href="https://polygon.technology/">
+        <img class="silver-partner-logo" src="images/polygon.png" alt="POLYGON LOGO">
+        </a>
+        <div class="partner-info">
+        </div>
+      </div>
+    </div>
+    <div class="sponsor-type platform-partner">
+      <h2>Platform-Partner</h2>
+      <a href="https://devfolio.co/">
+      <img class="platform-partner-logo" src="images/devfolio.png" alt="DEVFOLIO LOGO">
+      </a>
+    </div>
+    <div class="sponsor-type merchandise-partner">
+      <h2>Merchandise-Partner</h2>
+      <a href="https://bobble.ai/en/home">
+      <img class="merchandise-partner-logo" src="images/bobble2.png" alt="Bobble LOGO">
+      </a>
+    </div>
+    <div class="sponsor-type hiring-partner">
+      <h2>Hiring-Partner</h2>
+      <a href="https://www.catalog.fi/">
+      <img class="hiring-partner-logo" src="images/catalog.jpg" alt="catalog LOGO">
+      </a>
+    </div>
+    <div class="sponsor-type tracks-partner">
+      <h2>Tracks-Partner</h2>
+      <a href="https://tezos.com/">
+      <img class="tracks-partner-logo" src="images/tezoslogo.png" alt="tezos LOGO">
+      </a>
+    </div> 
+  </section>
+    
+
+  <!-- FAQs section -->
+  <section id="faqs" class="container">
+    <div class="heading-container">
+      <h1 class="front-text">FAQs</h1>
+    </div>
+    <div class="faqs-container">
+      <div class="faq-item">
+        <div class="faq-question">
+          <div class="dropdown-btn">
+            <img src="images/dropdown.PNG" alt="Dropdown Icon" class="dropdown-icon">
+          </div>
+          <p>I am a beginner, can I participate?</p>
+        </div>
+        <div class="faq-answer">
+          <p>Absolutely! We've got mentors, resources, and a series of tailored workshops specifically designed for beginners. Dive in and immerse yourself in your inaugural hackathon experience at Hackprix.</p>
+        </div>
+      </div>
+   
+      <div class="faq-item">
+        <div class="faq-question">
+          <div class="dropdown-btn">
+            <img src="images/dropdown.PNG" alt="Dropdown Icon" class="dropdown-icon">
+          </div>
+          <p>Can I participate remotely?</p>
+        </div>
+        <div class="faq-answer">
+          <p>Hackprix is an in-person hackathon. So remote participation is not applicable.</p>
+        </div>
+      </div>
+      <!--<div class="faq-item">
+        <div class="faq-question">
+          <div class="dropdown-btn">
+            <img src="images/dropdown.PNG" alt="Dropdown Icon" class="dropdown-icon">
+          </div>
+          <p>Is team formation allowed?</p>
+        </div>
+        <div class="faq-answer">
+          <p>Absolutely! Collaborating in teams of up to four is encouraged. Join our Discord Server to opt-in for team formation, where you'll be matched with compatible teammates. Of course, working solo is also an option.</p>
+        </div>
+      </div> -->
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <div class="dropdown-btn">
+            <img src="images/dropdown.PNG" alt="Dropdown Icon" class="dropdown-icon">
+          </div>
+          <p>How can I reach the venue?</p>
+        </div>
+        <div class="faq-answer">
+          <p>
+            The venue is conveniently located near 
+            <a href="https://www.google.com/maps/d/u/0/viewer?mid=1GbdIdUPkQKfsqq6BZBp4euNUADQ&ll=17.218016416850293%2C78.4343733519165&z=14" style="color: orange;" target="_blank">Hyderabad RGI Airport</a> 
+            and 
+            <a href="https://www.bing.com/ck/a?!&&p=dc0e1fd8cb3cb960JmltdHM9MTcxMzMxMjAwMCZpZ3VpZD0wMTA1NWM1My03YzlkLTY4NDYtMjQzZC00Zjg5N2QzMDY5MzMmaW5zaWQ9NTgxNw&ptn=3&ver=2&hsh=3&fclid=01055c53-7c9d-6846-243d-4f897d306933&u=a1L21hcHM_Jm1lcGk9MjR-flRvcE9mUGFnZX5MYXJnZU1hcExpbmsmdHk9MTgmcT1IeWRlcmFiYWQlMjBEZWNjYW4lMjBSYWlsd2F5JTIwU3RhdGlvbiUyQyUyMFRlbGFuZ2FuYSZwcG9pcz0xNy4zOTI0MDA3NDE1NzcxNV83OC40Njc0OTg3NzkyOTY4OF9IeWRlcmFiYWQlMjBEZWNjYW4lMjBSYWlsd2F5JTIwU3RhdGlvbiUyQyUyMFRlbGFuZ2FuYV9-JmNwPTE3LjM5MjQwMX43OC40Njc0OTkmdj0yJnNWPTEmRk9STT1NSVJFJnFwdnQ9bmFtcGFsbHkrcmFpbHdheStzdGF0aW9uK2h5ZGVyYWJhZCtvbitnb29nbGUrbWFwcw&ntb=1" style="color: orange;" target="_blank">Hyderabad Nampally Railway Station</a>, 
+            ensuring easy access for attendees. Cab services are readily available from both transportation hubs to transport you directly to the venue.
+          </p>
+        </div>
+      </div>
+  
+      <div class="faq-item">
+        <div class="faq-question">
+          <div class="dropdown-btn">
+            <img src="images/dropdown.PNG" alt="Dropdown Icon" class="dropdown-icon">
+          </div>
+          <p>What is the event Code of Conduct?</p>
+        </div>
+        <div class="faq-answer">
+          <p>We want to ensure a positive experience for all participants. We will be following
+            <a href="https://bit.ly/cwh-coc" style="color: orange;" target="_blank">Hackprix Code of Conduct.</a>
+             We encourage you to read it.
+          </p>
+        </div>
+      </div>
+  
+      <div class="faq-item">
+        <div class="faq-question">
+          <div class="dropdown-btn">
+            <img src="images/dropdown.PNG" alt="Dropdown Icon" class="dropdown-icon">
+          </div>
+          <p>Will food & stay be provided?</p>
+        </div>
+        <div class="faq-answer">
+          <p>We've got lots of food and snacks for everyone, stay hacky and hydrated. Rooms for resting/sleeping will be arranged at the Campus (separately for opposite genders).</p>
+        </div>
+      </div>
+  
+      <div class="faq-item">
+        <div class="faq-question">
+          <div class="dropdown-btn">
+            <img src="images/dropdown.PNG" alt="Dropdown Icon" class="dropdown-icon">
+          </div>
+          <p>If your question isn't listed, what's your move?</p>
+        </div>
+        <div class="faq-answer">
+          <p>For assistance, reach out to us at  <a href="https://bit.ly/cwh-discord">Discord</a> </p>
+        </div>
+      </div>    
+  </section>
+  <section id="contact" class="container">
+    <div class="heading-container">
+      <h1 class="front-text">Contact Us</h1>
+    </div>
+    <div class="contact-icons">
+      <a href="https://discord.com/invite/EbfEhyaNWK" class="contact-btn" target="_blank"><img src="images/discord.png" alt="Discord"> Discord</a>
+      <a href="https://www.instagram.com/hackprix?igsh=MzRlODBiNWFlZA==" class="contact-btn" target="_blank"><img src="images/instagram.png" alt="Instagram"> Instagram</a>
+      <a href="https://x.com/codewavehub?t=DxkFXQcAq5wlOC_lWVKsJA&s=09" class="contact-btn" target="_blank"><img src="images/twitter.png" alt="Twitter"> Twitter</a>
+      <a href="https://www.linkedin.com/company/codewavehub/" class="contact-btn" target="_blank"><img src="images/linkedin.png" alt="LinkedIn"> LinkedIn</a>
+      <a href="mailto:hackprix@lords.ac.in" class="contact-btn"><img src="images/mail.png" alt="Email"> Email</a>
+      <a href="pdfs/mlh-code-of-conduct (2).pdf" class="contact-btn" download><img src="images/checklist.png" alt="Code of Conduct">COC</a>
+    </div>
+  </section>
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="https://unpkg.com/@pdf-lib/fontkit@0.0.4"></script>
+    <script src="./FileSaver.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

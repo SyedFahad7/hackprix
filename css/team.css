@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&amp;display=swap');
+
+* {
+  font-family: Nunito, sans-serif;
+}
+
+.responsive-cell-block {
+  min-height: 75px;
+}
+@font-face {
+  font-family: 'Bricks Sans';
+  src: url('fonts/brics/HvDTrial_BrixSans-Regular-BF64c3379310193.otf') format('woff2'), /* Modern Browsers */
+       url('fonts/brics/HvDTrial_BrixSans-Regular-BF64c3379310193.otf') format('woff'); /* Legacy Browsers */
+  font-weight: normal; 
+  font-style: normal; 
+}
+@font-face {
+  font-family: 'NTBrickSans';
+  src: url('fonts/NTBrickSans/NTBrickSans.woff2') format('woff2'),
+       url('fonts/NTBrickSans/NTBrickSans.woff') format('woff'),
+       url('fonts/NTBrickSans/NTBrickSans.ttf') format('truetype'),
+       url('fonts/NTBrickSans/NTBrickSans.otf') format('truetype');
+  font-weight: normal;
+  font-style:normal;
+}
+
+.text-blk {
+  margin: 0;
+  line-height: 25px;
+}
+
+.responsive-container-block {
+  min-height: 75px;
+  width: 100%;
+  background: #C2E4FF;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: auto;
+}
+
+
+.team-head-text {
+  font-family: 'NTBrickSans', sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  text-align: center;
+  color: white;
+  margin: 30px 0 50px;
+}
+
+.container {
+  max-width: 1380px;
+  background-color: #EE8352;
+  margin: 60px auto;
+  border: none;
+  border-radius: 20px;
+}
+.card {
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 25px;
+}
+
+.card-container {
+  width: 280px;
+  background-color: #EFE7E2;
+  margin: 0 10px 25px;
+  border: none;
+  border-radius: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.name {
+  margin: 20px 0 5px;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.position {
+  margin-bottom: 10px;
+}
+
+.feature-text {
+  margin-bottom: 20px;
+  color: rgb(122, 122, 122);
+  line-height: 30px;
+}
+
+.social-icons {
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.team-image-wrapper {
+  clip-path: circle(50% at 50% 50%);
+  width: 130px;
+  height: 130px;
+}
+
+.team-member-image {
+  max-width: 100%;
+}
+
+@media (max-width: 500px) {
+  .card-container {
+    width: 100%;
+    margin: 0 0 25px;
+    margin-left: 20px;
+    margin-right:20px;
+  }
+}
+
+
+body {
+  background-color: #191717;
+}
+.fab.fa-twitter, .fab.fa-instagram, .fab.fa-linkedin-in, .fab.fa-github {
+  font-size: 25px;
+  color: rgba(225, 41, 41, 0.655);
+}
+
+.footer {
+  padding: 20px 0;
+  text-align: center;
+  margin-top: 40px;
+  max-width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  padding: 0 20px;
+}
+
+.footer-left, .footer-right {
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo {
+  font-size: 16px;
+  color: #333;
+  text-decoration: none;
+}
+
+.footer-link {
+  color: #333;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.footer-link i {
+  margin-right: 8px;
+}
+    element.style {
+      color: black;
+      font-size: 20px;
+  }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .footer-content {
+      flex-direction: row;
+      justify-content: center;
+      max-width: 100%;
+  }
+  
+  .footer-right {
+      margin-top: 0;
+      flex-direction: row;
+  }
+  
+  .footer-link {
+      margin-left: 10px;
+      margin-top: 0;
+  }
+}
+
+/* Font Awesome for icons */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
