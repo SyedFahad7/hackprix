@@ -13,17 +13,7 @@
   })(this, function () {
     "use strict";
   
-    /*
-    * FileSaver.js
-    * A saveAs() FileSaver implementation.
-    *
-    * By Eli Grey, http://eligrey.com
-    *
-    * License : https://github.com/eligrey/FileSaver.js/blob/master/LICENSE.md (MIT)
-    * source  : http://purl.eligrey.com/github/FileSaver.js
-    */
-    // The one and only way of getting global scope in all environments
-    // https://stackoverflow.com/q/3277182/1008999
+    
     var _global = typeof window === 'object' && window.window === window ? window : typeof self === 'object' && self.self === self ? self : typeof global === 'object' && global.global === global ? global : void 0;
   
     function bom(blob, opts) {
@@ -91,16 +81,13 @@
     var isMacOSWebView = /Macintosh/.test(navigator.userAgent) && /AppleWebKit/.test(navigator.userAgent) && !/Safari/.test(navigator.userAgent);
     var saveAs = _global.saveAs || ( // probably in some web worker
     typeof window !== 'object' || window !== _global ? function saveAs() {}
-    /* noop */
-    // Use download attribute first if possible (#193 Lumia mobile) unless this is a macOS WebView
     : 'download' in HTMLAnchorElement.prototype && !isMacOSWebView ? function saveAs(blob, name, opts) {
       var URL = _global.URL || _global.webkitURL;
       var a = document.createElement('a');
       name = name || blob.name || 'download';
       a.download = name;
       a.rel = 'noopener'; // tabnabbing
-      // TODO: detect chrome extensions & packaged apps
-      // a.target = '_blank'
+      // TODO: detect chrome extensions
   
       if (typeof blob === 'string') {
         // Support regular links
